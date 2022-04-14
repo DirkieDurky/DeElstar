@@ -1,0 +1,1 @@
+wt -d backend start.bat; sp -d frontend start.bat
