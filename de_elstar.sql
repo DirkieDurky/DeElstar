@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2022 at 03:36 PM
+-- Generation Time: Apr 14, 2022 at 12:00 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `de_elstar`
 --
+CREATE DATABASE IF NOT EXISTS `de_elstar` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `de_elstar`;
 
 -- --------------------------------------------------------
 
