@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2022 at 12:00 PM
+-- Generation Time: Apr 15, 2022 at 04:46 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -43,16 +43,8 @@ CREATE TABLE `bikes` (
   `dayPrice` decimal(10,0) NOT NULL,
   `weekendPrice` decimal(10,0) NOT NULL,
   `weekPrice` decimal(10,0) NOT NULL,
-  `monthPrice` decimal(10,0) NOT NULL,
-  `purchaseHistory` int(11) DEFAULT NULL
+  `monthPrice` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `bikes`
---
-
-INSERT INTO `bikes` (`id`, `type`, `size`, `electric`, `color`, `brand`, `model`, `buy_date`, `comment`, `picture`, `dayPrice`, `weekendPrice`, `weekPrice`, `monthPrice`, `purchaseHistory`) VALUES
-(0, 'mens', 4, 0, '#ff00ff', 'Batavus', '3', '2022-04-12', 'test', NULL, '3', '4', '2', '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -61,17 +53,9 @@ INSERT INTO `bikes` (`id`, `type`, `size`, `electric`, `color`, `brand`, `model`
 --
 
 CREATE TABLE `categories` (
-  `fiets_id` int(10) UNSIGNED NOT NULL,
+  `bike_id` int(10) UNSIGNED NOT NULL,
   `category` enum('city','electric','mountain','race','child','hybrid','cruiser','road','touring') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `categories`
---
-
-INSERT INTO `categories` (`fiets_id`, `category`) VALUES
-(0, 'electric'),
-(0, 'race');
 
 -- --------------------------------------------------------
 
@@ -115,6 +99,17 @@ CREATE TABLE `purchases` (
   `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_bikes`
+--
+
+CREATE TABLE `purchase_bikes` (
+  `purchase_id` int(10) UNSIGNED NOT NULL,
+  `bike_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Indexes for dumped tables
 --
@@ -129,8 +124,8 @@ ALTER TABLE `bikes`
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`fiets_id`,`category`),
-  ADD UNIQUE KEY `fiets_id` (`fiets_id`,`category`);
+  ADD PRIMARY KEY (`bike_id`,`category`),
+  ADD KEY `bike_id` (`bike_id`);
 
 --
 -- Indexes for table `customers`
@@ -143,8 +138,16 @@ ALTER TABLE `customers`
 --
 ALTER TABLE `purchases`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `customer` (`customer`),
-  ADD UNIQUE KEY `bike` (`bike`);
+  ADD KEY `customer` (`customer`),
+  ADD KEY `bike` (`bike`);
+
+--
+-- Indexes for table `purchase_bikes`
+--
+ALTER TABLE `purchase_bikes`
+  ADD PRIMARY KEY (`purchase_id`,`bike_id`),
+  ADD KEY `purchase_id` (`purchase_id`),
+  ADD KEY `bike_id` (`bike_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -173,17 +176,24 @@ ALTER TABLE `purchases`
 --
 
 --
--- Constraints for table `bikes`
+-- Constraints for table `categories`
 --
-ALTER TABLE `bikes`
-  ADD CONSTRAINT `bikes_ibfk_1` FOREIGN KEY (`id`) REFERENCES `categories` (`fiets_id`);
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`bike_id`) REFERENCES `bikes` (`id`);
 
 --
 -- Constraints for table `purchases`
 --
 ALTER TABLE `purchases`
-  ADD CONSTRAINT `purchases_ibfk_1` FOREIGN KEY (`bike`) REFERENCES `bikes` (`id`),
-  ADD CONSTRAINT `purchases_ibfk_2` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`);
+  ADD CONSTRAINT `purchases_ibfk_1` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`),
+  ADD CONSTRAINT `purchases_ibfk_2` FOREIGN KEY (`bike`) REFERENCES `bikes` (`id`);
+
+--
+-- Constraints for table `purchase_bikes`
+--
+ALTER TABLE `purchase_bikes`
+  ADD CONSTRAINT `purchase_bikes_ibfk_1` FOREIGN KEY (`bike_id`) REFERENCES `bikes` (`id`),
+  ADD CONSTRAINT `purchase_bikes_ibfk_2` FOREIGN KEY (`purchase_id`) REFERENCES `purchases` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
