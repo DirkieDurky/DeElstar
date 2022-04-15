@@ -17,7 +17,6 @@ export default function App() {
         axios.get(`${url}/api/categories`)
             .then((res) => {
                 const categories: { category: string, img: any }[] = res.data;
-                console.log(categories);
                 getCategories(categories);
             })
             .catch(error => console.error(`Error: ${error}`));

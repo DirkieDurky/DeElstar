@@ -103,6 +103,10 @@ nav {
   text-align: center;
 }
 
+.tab:hover {
+  cursor: pointer;
+}
+
 .tab.light {
   background-color: #C4C4C4;
 }
@@ -123,7 +127,10 @@ nav {
 }
 
 .tab .image {
+  position: relative;
   max-width: 200px;
+  transform: translate(0, -50%);
+  top: 50%;
 }
 
 .tab .text {
