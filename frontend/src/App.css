@@ -92,5 +92,41 @@ nav {
   display: flex;
   margin-top: 5rem;
   height: 20rem;
-  background-color: red;
+  flex-direction: row;
+}
+
+.tab {
+  background-color: #909090;
+  width: 225px;
+  height: 250px;
+  margin: 0 10px;
+  text-align: center;
+}
+
+.tab.light {
+  background-color: #C4C4C4;
+}
+
+.tab .imageBox {
+  position: relative;
+  width: 200px;
+  height: 150px;
+  overflow: hidden;
+  transform: translate(-50%);
+  top: 15px;
+  left: 50%;
+}
+
+.tab .imageHelper {
+  display: inline-block;
+  height: 100%;
+}
+
+.tab .image {
+  max-width: 200px;
+}
+
+.tab .text {
+  position: relative;
+  top: 40px;
 }

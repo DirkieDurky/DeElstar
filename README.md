@@ -25,4 +25,4 @@ In the `backend` and `frontend` folder are `start.bat` files to start the corres
 There is also a `start.bat` file in the root that runs both components in Windows Terminal. You need to install Windows Terminal from the Windows Store for this to work.
 
 ### Before committing
-If you made changes to the database replace the `de_elstar.sql` file with your new database. Make sure you include the creation of the database in the file.
+If you made changes to the database replace the `de_elstar.sql` file with your new database.

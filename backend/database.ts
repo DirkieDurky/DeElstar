@@ -1,4 +1,5 @@
 import mysql2 from "mysql2";
+const util = require('util');
 
 const connection = mysql2.createConnection({
     host: process.env.DB_HOST,
@@ -6,4 +7,6 @@ const connection = mysql2.createConnection({
     database: process.env.DB_NAME
 });
 
-export default connection;
+const query = util.promisify(connection.query).bind(connection);
+
+export default query;

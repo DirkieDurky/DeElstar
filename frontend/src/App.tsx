@@ -2,11 +2,10 @@ import logo from './de Elstar logo + tekst.png';
 import React, { useEffect, useState } from "react";
 import './App.css';
 import axios from "axios";
-import Tab from './Tab';
 import Categories from './Categories';
 
 export default function App() {
-    const [categories, getCategories] = useState<{ category: string, bikeAmount: number }[]>([]);
+    const [categories, getCategories] = useState<{ category: string, img: any }[]>([]);
 
     const url = 'http://localhost:5000';
 
@@ -17,7 +16,7 @@ export default function App() {
     const getAllCategories = () => {
         axios.get(`${url}/api/categories`)
             .then((res) => {
-                const categories: { category: string, bikeAmount: number }[] = res.data;
+                const categories: { category: string, img: any }[] = res.data;
                 console.log(categories);
                 getCategories(categories);
             })
