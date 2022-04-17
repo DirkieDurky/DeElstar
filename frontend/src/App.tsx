@@ -1,45 +1,18 @@
-import logo from './de Elstar logo + tekst.png';
-import React, { useEffect, useState } from "react";
-import './App.css';
-import axios from "axios";
-import Categories from './Categories';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-export default function App() {
-    const [categories, getCategories] = useState<{ category: string, img: any }[]>([]);
+import Home from './pages/Home/Home';
+import SignUp from './pages/SignUp/SignUp';
 
-    const url = 'http://localhost:5000';
-
-    useEffect(() => {
-        getAllCategories();
-    }, []);
-
-    const getAllCategories = () => {
-        axios.get(`${url}/api/categories`)
-            .then((res) => {
-                const categories: { category: string, img: any }[] = res.data;
-                getCategories(categories);
-            })
-            .catch(error => console.error(`Error: ${error}`));
-    }
+const App = () => {
     return (
-        <>
-            <nav>
-                <img id="logo" src={logo} alt="Logo" />
-                <form id="searchBarForm" >
-                    <label>
-                        <input type="text" id="searchBar" placeholder="Naar wat voor fiets bent u op zoek?" />
-                    </label>
-                </form>
-                <div id="buttons" >
-                    <a className="signUpButton" href="https://tetris.dirkdev.com" > Aanmelden </a>
-                    <a className="signInButton" href="https://dirkdev.com" > Inloggen </a>
-                </div>
-            </nav>
-            <div className="slideBar" id="categories">
-                <Categories categories={categories} />
-            </div>
-        </>
-    );
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="/signUp" element={<SignUp />}></Route>
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
-// export default App;
+export default App;
