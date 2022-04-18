@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import './Home.css';
 import axios from "axios";
 import Categories from '../../Categories';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
     const [categories, getCategories] = useState<{ category: string, img: any }[]>([]);
@@ -31,8 +32,8 @@ export default function Home() {
                     </label>
                 </form>
                 <div id="buttons" >
-                    <a className="signUpButton" href="/signUp" > Aanmelden </a>
-                    <a className="signInButton" href="https://dirkdev.com" > Inloggen </a>
+                    <Link className="signUpButton" to="/signUp" > Registreren </Link>
+                    <Link className="signInButton" to="/signIn" > Inloggen </Link>
                 </div>
             </nav>
             <div className="slideBar" id="categories">
