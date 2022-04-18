@@ -2,7 +2,6 @@
     position: absolute;
     background-color: #C4C4C4;
     border-radius: 12px;
-    height: 95%;
     width: 500px;
     transform: translate(-50%, -50%);
     left: 50%;
@@ -26,13 +25,27 @@
     text-align: center;
 }
 
-.form input {
+.form input[type="text"],
+input[type="password"] {
     margin-top: 10px;
-    margin-bottom: 2.5rem;
-    width: 75%;
-    height: 2rem;
+    margin-bottom: 2rem;
+    width: 70%;
+    height: 2.5rem;
     border: none;
     border-radius: 5px;
+    padding: 0 10px;
 }
 
-.form input :only-of-type
+.form input[type="submit"] {
+    background-color: red;
+    width: 75%;
+    height: 3rem;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.form input[type="submit"]:hover {
+    cursor: pointer;
+}

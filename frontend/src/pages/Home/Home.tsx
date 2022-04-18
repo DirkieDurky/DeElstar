@@ -7,14 +7,12 @@ import Categories from '../../Categories';
 export default function Home() {
     const [categories, getCategories] = useState<{ category: string, img: any }[]>([]);
 
-    const url = 'http://localhost:5000';
-
     useEffect(() => {
         getAllCategories();
     }, []);
 
     const getAllCategories = () => {
-        axios.get(`${url}/api/categories`)
+        axios.get(`${process.env.REACT_APP_URL}/api/categories`)
             .then((res) => {
                 const categories: { category: string, img: any }[] = res.data;
                 getCategories(categories);
@@ -24,7 +22,9 @@ export default function Home() {
     return (
         <>
             <nav>
-                <img id="logo" src={logo} alt="Logo" />
+                <a href="/">
+                    <img id="logo" src={logo} alt="logo" />
+                </a>
                 <form id="searchBarForm" >
                     <label>
                         <input type="text" id="searchBar" placeholder="Naar wat voor fiets bent u op zoek?" />

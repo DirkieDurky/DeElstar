@@ -1,5 +1,5 @@
 import mysql2 from "mysql2";
-const util = require('util');
+import util from "util";
 
 const connection = mysql2.createConnection({
     host: process.env.DB_HOST,
