@@ -21,7 +21,6 @@ export default function SignUp() {
             user: user,
             pass: pass,
         }).then((res) => {
-            console.log(res.data.status);
             switch (res.data.status) {
                 case 0: {
                     setUserErr("Er is geen account met deze gebruikernaam gevonden.");
@@ -34,7 +33,11 @@ export default function SignUp() {
                 case 2: {
                     sessionStorage.setItem('username', user);
                     sessionStorage.setItem('token', res.data.token);
-                    navigate("/");
+                    if (res.data.type === 'employee') {
+                        navigate("/employeeHome");
+                    } else {
+                        navigate("/");
+                    }
                     break;
                 }
                 default: {

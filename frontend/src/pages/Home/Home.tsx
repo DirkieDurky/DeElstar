@@ -30,11 +30,8 @@ export default function Home() {
                 .then((res) => {
                     const token = sessionStorage.getItem('token');
                     if (token !== null && res.data === token) {
-                        console.log(`Successfully signed in as ${user}`);
                         setLoggedIn(true);
                         setUsername(user);
-                    } else {
-                        console.log(`Incorrect token given. ${res.data} & ${token}`);
                     }
                 })
         }

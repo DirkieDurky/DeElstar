@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import signedInUsers, { updateUserToken } from "./signedInUsers";
 
 const signIn = async (req: Request<{}, {}, { user: string, pass: string }>, res: Response) => {
-    const rows = await query("SELECT `username`,`hash` FROM `users` WHERE username = ?", [req.body.user]);
+    const rows = await query("SELECT `username`,`hash`,`type` FROM `users` WHERE username = ?", [req.body.user]);
     /*
         Status codes:
         0: User not found,
@@ -23,7 +23,7 @@ const signIn = async (req: Request<{}, {}, { user: string, pass: string }>, res:
 
     const token = Math.random().toString(36);
     updateUserToken(user.username, token);
-    res.send({ status: 2, token: token });
+    res.send({ status: 2, token: token, type: user.type });
 }
 
 export { signIn }

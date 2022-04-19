@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from './pages/Home/Home';
-import Register from './pages/Account/Register';
-import SignIn from './pages/Account/SignIn';
+import Home from './Home/Home';
+import Register from './Account/Register';
+import SignIn from './Account/SignIn';
 
 const App = () => {
     return (
@@ -13,6 +13,7 @@ const App = () => {
                 <Route path="/register" element={<Register />}></Route>
                 <Route path="/signIn" element={<SignIn />}></Route>
             </Routes>
+            {/* <Notifications></Notifications> */}
         </BrowserRouter>
     )
 }
