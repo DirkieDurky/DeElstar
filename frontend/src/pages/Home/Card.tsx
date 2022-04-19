@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Tab(props: { img: any, text: string, light: boolean }) {
+export default function Card(props: { img: any, text: string, light: boolean }) {
     const { img, text, light } = props;
     return (
         <div className={`tab${light ? " light" : ""}`}>

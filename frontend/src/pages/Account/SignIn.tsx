@@ -14,10 +14,10 @@ export default function SignUp() {
     const [passErr, setPassErr] = useState("");
     const [globalErr, setGlobalErr] = useState("");
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
 
-        await axios.post(`${process.env.REACT_APP_URL}/api/signIn`, {
+        axios.post(`${process.env.REACT_APP_URL}/api/signIn`, {
             user: user,
             pass: pass,
         }).then((res) => {
