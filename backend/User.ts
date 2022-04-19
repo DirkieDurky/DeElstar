@@ -11,13 +11,15 @@ class User {
     email: string;
     hash: string;
     type: UserType;
+    token: string;
 
-    constructor(id: number, username: string, email: string, hash: string, type: UserType) {
+    constructor(id: number, username: string, email: string, hash: string, type: UserType, token: string) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.hash = hash;
         this.type = type;
+        this.token = token;
     }
 
     static async getCustomerById(id: number) {
@@ -26,7 +28,7 @@ class User {
             return null;
         } else {
             const user = rows[0];
-            return new User(user.id, user.username, user.email, user.hash, UserType.customer);
+            return new User(user.id, user.username, user.email, user.hash, UserType.customer, user.token);
         }
     }
 }

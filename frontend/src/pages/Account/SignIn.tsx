@@ -32,6 +32,8 @@ export default function SignUp() {
                     break;
                 }
                 case 2: {
+                    sessionStorage.setItem('username', user);
+                    sessionStorage.setItem('token', res.data.token);
                     navigate("/");
                     break;
                 }

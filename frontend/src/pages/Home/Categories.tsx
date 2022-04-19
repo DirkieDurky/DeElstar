@@ -1,5 +1,5 @@
 import React from 'react'
-import Tab from './Tab'
+import Tab from '../../Tab'
 
 export default function Categories(props: { categories: { category: string, img: any }[] }) {
     const { categories } = props;

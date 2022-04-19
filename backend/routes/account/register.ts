@@ -63,7 +63,7 @@ const register = async (req: Request<{}, {}, { user: string, email: string, pass
         if (req.body.pass.toUpperCase() != req.body.pass) reqrmts.pass.smallLetter = true;
         if (req.body.pass.toLowerCase() != req.body.pass) reqrmts.pass.capitalLetter = true;
         if (/\d/.test(req.body.pass)) reqrmts.pass.number = true;
-        if (/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(req.body.pass)) reqrmts.pass.specialChar = true;
+        if (/[ `!@#$%^&*()_+\-=[]{};':"\\|,.<>\/?~]/.test(req.body.pass)) reqrmts.pass.specialChar = true;
     }
     //Password verify
     if (req.body.passVerify !== "") {

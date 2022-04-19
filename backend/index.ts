@@ -7,7 +7,7 @@ import { test, testDb } from "./routes/testing";
 import { categories } from "./routes/home";
 import { register } from "./routes/account/register";
 import { signIn } from "./routes/account/signIn";
-import { getSignedInUser } from "./routes/account/signedInUser";
+import { getUserToken } from "./routes/account/signedInUsers";
 
 const app = express();
 
@@ -29,6 +29,6 @@ app.get("/api/categories", categories);
 //Account
 app.post("/api/register", register);
 app.post("/api/signIn", signIn);
-app.get("/api/getSignedInUser", getSignedInUser)
+app.get("/api/getUserToken", getUserToken);
 
 app.listen(5000, () => console.log('Server running at port 5000'));

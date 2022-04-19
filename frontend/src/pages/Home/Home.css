@@ -1,139 +1,147 @@
 body {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 nav {
-  display: grid;
-  grid-template-areas: "logo search buttons";
-  align-items: center;
+    display: grid;
+    grid-template-areas: "logo search buttons";
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
 
-  box-sizing: border-box;
-  min-width: 100%;
-  width: max-content;
-  background: #F5F5F5;
-  height: 4.5rem;
-}
-
-#logo {
-  max-height: 4rem;
-  grid-area: logo;
-}
-
-#searchBarForm {
-  justify-self: center;
-  grid-area: search;
+    box-sizing: border-box;
+    min-width: 100%;
+    width: max-content;
+    background: #F5F5F5;
+    height: 4.5rem;
 }
 
 #searchBar {
-  border-radius: 5rem;
-  background: #FFFFFF;
-  height: 2rem;
-  /*max-width: 30rem;*/
-  /*width: 30rem;*/
-  min-width: 20rem;
-  width: 30vw;
-  border: none;
-  padding: 0 1rem;
-  box-sizing: border-box;
-  outline: none;
-}
-
-#searchBar:active {
-  border: none;
-}
-
-#buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 1.25rem;
-
-  justify-self: end;
-  margin-right: 1.25rem;
-
-  text-align: center;
-  grid-area: buttons;
-}
-
-.registerButton {
-  width: 8rem;
-  height: 2rem;
-  background: #D3D3D3;
-
-  text-decoration: none;
-  color: black;
-  line-height: 200%;
-}
-
-.signInButton {
-  width: 8rem;
-  height: 2rem;
-  background: #FF0000;
-
-  text-decoration: none;
-  color: black;
-  line-height: 200%;
+    justify-self: center;
+    grid-area: search;
+    width: 80%;
+    border-radius: 5rem;
+    background: #FFFFFF;
+    height: 2rem;
+    min-width: 20rem;
+    border: none;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    outline: none;
 }
 
 @media only screen and (max-width: 56rem) {
-  nav {
-    height: 9rem;
-    grid-template-areas:
-      "logo buttons"
-      "search search";
-  }
+    nav {
+        height: 9rem;
+        grid-template-areas:
+            "logo buttons"
+            "search search";
+        grid-template-columns: 1fr 1fr;
+    }
 
-  #searchBar {
-    width: 80vw;
-  }
+    #searchBar {
+        width: 80vw;
+    }
+}
+
+#logo {
+    max-height: 4rem;
+    grid-area: logo;
+}
+
+#searchBar:active {
+    border: none;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1.25rem;
+
+    justify-self: end;
+    margin-right: 1.25rem;
+
+    text-align: center;
+    grid-area: buttons;
+}
+
+.button {
+    width: 8rem;
+    height: 2rem;
+
+    text-decoration: none;
+    color: black;
+    line-height: 200%;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.register {
+    background-color: #D3D3D3;
+}
+
+.signIn {
+    background-color: #FF0000;
+}
+
+.signOut {
+    background-color: #1d1d1d;
+    color: white;
 }
 
 .slideBar {
-  display: flex;
-  margin-top: 5rem;
-  height: 20rem;
-  flex-direction: row;
+    display: flex;
+    margin-top: 5rem;
+    height: 20rem;
+    flex-direction: row;
 }
 
 .tab {
-  background-color: #909090;
-  width: 225px;
-  height: 250px;
-  margin: 0 10px;
-  text-align: center;
+    background-color: #909090;
+    width: 225px;
+    height: 250px;
+    margin: 0 10px;
+    text-align: center;
 }
 
 .tab:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .tab.light {
-  background-color: #C4C4C4;
+    background-color: #C4C4C4;
 }
 
 .tab .imageBox {
-  position: relative;
-  width: 200px;
-  height: 150px;
-  overflow: hidden;
-  transform: translate(-50%);
-  top: 15px;
-  left: 50%;
+    position: relative;
+    width: 200px;
+    height: 150px;
+    overflow: hidden;
+    transform: translate(-50%);
+    top: 15px;
+    left: 50%;
 }
 
 .tab .imageHelper {
-  display: inline-block;
-  height: 100%;
+    display: inline-block;
+    height: 100%;
 }
 
 .tab .image {
-  position: relative;
-  max-width: 200px;
-  transform: translate(0, -50%);
-  top: 50%;
+    position: relative;
+    max-width: 200px;
+    transform: translate(0, -50%);
+    top: 50%;
 }
 
 .tab .text {
-  position: relative;
-  top: 40px;
+    position: relative;
+    top: 40px;
+}
+
+.username {
+    text-align: center;
+    line-height: 200%;
 }

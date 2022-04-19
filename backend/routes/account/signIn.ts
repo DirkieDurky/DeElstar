@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import query from "../../database";
 import bcrypt from "bcrypt";
-import User from "../../User";
+import signedInUsers, { updateUserToken } from "./signedInUsers";
 
 const signIn = async (req: Request<{}, {}, { user: string, pass: string }>, res: Response) => {
-    const rows = await query("SELECT `id`,`hash` FROM `customers` WHERE username = ?", [req.body.user]);
+    const rows = await query("SELECT `username`,`hash` FROM `customers` WHERE username = ?", [req.body.user]);
     /*
         Status codes:
         0: User not found,
@@ -15,15 +15,15 @@ const signIn = async (req: Request<{}, {}, { user: string, pass: string }>, res:
         res.send({ status: 0 });
         return;
     }
-    const hash: string = rows[0].hash
-    if (!await bcrypt.compare(req.body.pass, hash)) {
+    const user = rows[0];
+    if (!await bcrypt.compare(req.body.pass, user.hash)) {
         res.send({ status: 1 });
         return;
     }
 
-
-
-    res.send({ status: 2 });
+    const token = Math.random().toString(36);
+    updateUserToken(user.username, token);
+    res.send({ status: 2, token: token });
 }
 
 export { signIn }
