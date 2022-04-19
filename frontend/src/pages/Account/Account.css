@@ -2,11 +2,11 @@
     position: absolute;
     background-color: #C4C4C4;
     border-radius: 12px;
-    width: 500px;
+    width: 22rem;
+    padding: 2rem 4rem;
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    padding: 2rem 0;
 }
 
 .logo {
@@ -34,7 +34,7 @@
 input[type="password"] {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    width: 70%;
+    width: 80%;
     height: 2.5rem;
     border: none;
     border-radius: 5px;
@@ -43,12 +43,11 @@ input[type="password"] {
 
 .form input[type="submit"] {
     background-color: red;
-    width: 75%;
+    width: 90%;
     height: 3rem;
     border: none;
     border-radius: 5px;
     margin-top: 20px;
-    margin-bottom: 2rem;
 }
 
 .form input[type="submit"]:hover {

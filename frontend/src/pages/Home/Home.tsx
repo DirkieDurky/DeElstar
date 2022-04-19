@@ -4,12 +4,22 @@ import './Home.css';
 import axios from "axios";
 import Categories from '../../Categories';
 import { Link } from 'react-router-dom';
+import UserType from "../../UserType";
 
 export default function Home() {
     const [categories, getCategories] = useState<{ category: string, img: any }[]>([]);
 
     useEffect(() => {
         getAllCategories();
+
+        axios.get(`${process.env.REACT_APP_URL}/api/getSignedInUser`).then((res) => {
+            const user: { id: number, username: string, email: string, type: UserType } | null = res.data;
+            if (user === null) {
+                console.log(`Not logged in`);
+            } else {
+                console.log(`Logged in as ${user.username}`);
+            }
+        });
     }, []);
 
     const getAllCategories = () => {
@@ -32,7 +42,7 @@ export default function Home() {
                     </label>
                 </form>
                 <div id="buttons" >
-                    <Link className="signUpButton" to="/signUp" > Registreren </Link>
+                    <Link className="registerButton" to="/Register" > Registreren </Link>
                     <Link className="signInButton" to="/signIn" > Inloggen </Link>
                 </div>
             </nav>

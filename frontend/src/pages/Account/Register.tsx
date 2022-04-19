@@ -1,9 +1,8 @@
 import logo from '../../de Elstar logo + tekst.png';
-import React, { useEffect, useState } from "react";
-import './Register.css';
+import { useState } from "react";
+import './Account.css';
 import axios from "axios";
 import { useNavigate, Link } from 'react-router-dom';
-// import { Text } from 'react-native';
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -62,7 +61,7 @@ export default function SignUp() {
                         if (!data.pass.smallLetter) passErr += "Je wachtwoord moet minimaal 1 kleine letter bevatten.\n";
                         if (!data.pass.capitalLetter) passErr += "Je wachtwoord moet minimaal 1 hoofdletter bevatten.\n";
                         if (!data.pass.number) passErr += "Je wachtwoord moet minimaal 1 cijfer bevatten.\n";
-                        if (!data.pass.specialChar) passErr += "Je wachtwoord moet minimaal 1 speciaal karacter bevatten (!@#$%^&*()_+\-=\[\]{};':\"\\|,.<>\/?~]).\n";
+                        if (!data.pass.specialChar) passErr += "Je wachtwoord moet minimaal 1 speciaal karacter bevatten (!@#$%^&*()_+-=[]{};':\"\\|,.<>/?~]).\n";
                     }
                     //Password verify
                     if (!data.passVerify.entered) passVerifyErr += "Vul hetzelfde wachtwoord in als hierboven. Dit is belangrijk zodat u geen typfout maakt in uw wachtwoord.\n";
@@ -129,7 +128,7 @@ export default function SignUp() {
                         <span className="error">{passVerifyErr}</span>
                     </label>
                     <input type="submit" name="submit" value="Registreren" /><br></br>
-                    <span className="error">{globalErr}</span>
+                    <span className="error">{globalErr}</span><br></br>
                     <span id="signInInstead">Heeft u al een account? Klik <Link to="/signIn">hier</Link> om in te loggen.</span>
                 </form>
             </div>
