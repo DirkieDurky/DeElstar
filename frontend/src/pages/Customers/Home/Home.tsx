@@ -47,10 +47,10 @@ export default function Home() {
     }
 
     return (
-        <div className="customerBody">
-            < nav className="customerNav" >
+        <div className="customer body">
+            < nav className="customer nav" >
                 <a href="/">
-                    <img id="logo" src={logo} alt="logo" />
+                    <img className="customer logo" src={logo} alt="logo" />
                 </a>
                 <input type="text" id="searchBar" placeholder="Naar wat voor fiets bent u op zoek?" />
                 <ResetVars.Provider value={resetVars}>

@@ -1,19 +1,34 @@
-.employeeBody {
+.employee.body {
     background-color: #181818;
     width: 100vw;
     height: 100vh;
 }
 
-.employeeNav {
+.employee.nav {
     position: sticky;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    display: grid;
+    grid-template-areas: "logo tabs logout";
+    grid-template-columns: 1fr 3fr 1fr;
     top: 0;
     left: 0;
     width: 100%;
-    height: 56px;
+    height: 4.5rem;
     background-color: #212121;
+}
+
+.employee.logo {
+    position: absolute;
+    max-height: 4rem;
+    grid-area: logo;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    grid-area: tabs;
 }
 
 .tab {
@@ -23,7 +38,7 @@
     border-bottom: none;
     border-top: none;
     height: 100%;
-    width: inherit;
+    width: 100%;
     background-color: #212121;
     transition: all 200ms;
     margin: 0;
@@ -42,6 +57,44 @@
     filter: brightness(80%);
 }
 
-.tab #selected {
+.tab.selected {
     background-color: #3D3D3D;
+}
+
+.logout {
+    position: absolute;
+    grid-area: logout;
+    display: flex;
+    flex-direction: row;
+    gap: 1.25rem;
+
+    justify-self: end;
+    margin-right: 1.25rem;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    text-align: center;
+}
+
+.employee.SignOut {
+    background-color: #D3D3D3;
+    color: black;
+}
+
+.employee.username {
+    color: white;
+}
+
+@media only screen and (max-width: 85rem) {
+    .employee.nav {
+        height: 9rem;
+        grid-template-areas:
+            "logo logout"
+            "tabs tabs";
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .tab {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
 }

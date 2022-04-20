@@ -1,9 +1,9 @@
-.customerBody {
+.customer.body {
     margin: 0;
     padding: 0;
 }
 
-.customerNav {
+.customer.nav {
     display: grid;
     grid-template-areas: "logo search buttons";
     grid-template-columns: 1fr 2fr 1fr;
@@ -30,8 +30,8 @@
     outline: none;
 }
 
-@media only screen and (max-width: 56rem) {
-    nav {
+@media only screen and (max-width: 75rem) {
+    .customer.nav {
         height: 9rem;
         grid-template-areas:
             "logo buttons"
@@ -44,7 +44,7 @@
     }
 }
 
-#logo {
+.customer.logo {
     max-height: 4rem;
     grid-area: logo;
 }
