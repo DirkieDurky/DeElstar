@@ -4,7 +4,7 @@ import "dotenv/config";
 
 //Import routes
 import { test, testDb } from "./routes/testing";
-import { categories } from "./routes/home";
+import { categories } from "./routes/customers/home";
 import { register } from "./routes/account/register";
 import { signIn } from "./routes/account/signIn";
 import { getUserToken } from "./routes/account/signedInUsers";

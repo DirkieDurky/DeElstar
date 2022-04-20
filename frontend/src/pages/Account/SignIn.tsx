@@ -14,14 +14,13 @@ export default function SignUp() {
     const [passErr, setPassErr] = useState("");
     const [globalErr, setGlobalErr] = useState("");
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
 
-        await axios.post(`${process.env.REACT_APP_URL}/api/signIn`, {
+        axios.post(`${process.env.REACT_APP_URL}/api/signIn`, {
             user: user,
             pass: pass,
         }).then((res) => {
-            console.log(res.data.status);
             switch (res.data.status) {
                 case 0: {
                     setUserErr("Er is geen account met deze gebruikernaam gevonden.");
@@ -34,7 +33,11 @@ export default function SignUp() {
                 case 2: {
                     sessionStorage.setItem('username', user);
                     sessionStorage.setItem('token', res.data.token);
-                    navigate("/");
+                    if (res.data.type === 'employee') {
+                        navigate("/employee");
+                    } else {
+                        navigate("/");
+                    }
                     break;
                 }
                 default: {

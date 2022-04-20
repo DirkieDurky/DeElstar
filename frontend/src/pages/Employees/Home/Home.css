@@ -1,0 +1,47 @@
+.employeeBody {
+    background-color: #181818;
+    width: 100vw;
+    height: 100vh;
+}
+
+.employeeNav {
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #212121;
+}
+
+.tab {
+    position: relative;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: none;
+    border-top: none;
+    height: 100%;
+    width: inherit;
+    background-color: #212121;
+    transition: all 200ms;
+    margin: 0;
+}
+
+.tab span {
+    position: relative;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+.tab:hover {
+    filter: brightness(80%);
+}
+
+.tab #selected {
+    background-color: #3D3D3D;
+}

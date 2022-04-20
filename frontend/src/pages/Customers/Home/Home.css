@@ -1,9 +1,9 @@
-body {
+.customerBody {
     margin: 0;
     padding: 0;
 }
 
-nav {
+.customerNav {
     display: grid;
     grid-template-areas: "logo search buttons";
     grid-template-columns: 1fr 2fr 1fr;
@@ -98,7 +98,7 @@ nav {
     flex-direction: row;
 }
 
-.tab {
+.card {
     background-color: #909090;
     width: 225px;
     height: 250px;
@@ -106,15 +106,15 @@ nav {
     text-align: center;
 }
 
-.tab:hover {
+.card:hover {
     cursor: pointer;
 }
 
-.tab.light {
+.card.light {
     background-color: #C4C4C4;
 }
 
-.tab .imageBox {
+.card .imageBox {
     position: relative;
     width: 200px;
     height: 150px;
@@ -124,19 +124,19 @@ nav {
     left: 50%;
 }
 
-.tab .imageHelper {
+.card .imageHelper {
     display: inline-block;
     height: 100%;
 }
 
-.tab .image {
+.card .image {
     position: relative;
     max-width: 200px;
     transform: translate(0, -50%);
     top: 50%;
 }
 
-.tab .text {
+.card .text {
     position: relative;
     top: 40px;
 }

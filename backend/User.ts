@@ -23,7 +23,7 @@ class User {
     }
 
     static async getCustomerById(id: number) {
-        const rows = await query("SELECT * FROM `customers` WHERE `id` = ?", [id]);
+        const rows = await query("SELECT * FROM `users` WHERE `id` = ?", [id]);
         if (rows.length < 1) {
             return null;
         } else {

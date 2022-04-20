@@ -61,7 +61,7 @@ export default function SignUp() {
                         if (!data.pass.smallLetter) passErr += "Je wachtwoord moet minimaal 1 kleine letter bevatten.\n";
                         if (!data.pass.capitalLetter) passErr += "Je wachtwoord moet minimaal 1 hoofdletter bevatten.\n";
                         if (!data.pass.number) passErr += "Je wachtwoord moet minimaal 1 cijfer bevatten.\n";
-                        if (!data.pass.specialChar) passErr += "Je wachtwoord moet minimaal 1 speciaal karacter bevatten (!@#$%^&*()_+-=[]{};':\"\\|,.<>/?~]).\n";
+                        if (!data.pass.specialChar) passErr += "Je wachtwoord moet minimaal 1 speciaal karakter bevatten (`!@#$%^&*()_+\-=[]{};':\"\\|,.<>/?~).\n";
                     }
                     //Password verify
                     if (!data.passVerify.entered) passVerifyErr += "Vul hetzelfde wachtwoord in als hierboven. Dit is belangrijk zodat u geen typfout maakt in uw wachtwoord.\n";
@@ -72,7 +72,27 @@ export default function SignUp() {
                     break;
                 }
                 case 200: {
-                    navigate("/");
+                    console.log(`Account succesvol aangemaakt!`);
+                    axios.post(`${process.env.REACT_APP_URL}/api/signIn`, {
+                        user: user,
+                        pass: pass,
+                    }).then((res) => {
+                        switch (res.data.status) {
+                            case 2: {
+                                sessionStorage.setItem('username', user);
+                                sessionStorage.setItem('token', res.data.token);
+                                console.log("Succesvol ingelogd");
+                                navigate("/");
+                                break;
+                            }
+                            default: {
+                                console.log(`Er ging iets mis bij het inloggen. (${res.data.status}`);
+                            }
+                        }
+
+                    }).catch((res) => {
+                        console.log(`Er ging iets mis bij het inloggen. (${res.data.status}`);
+                    });
                     break;
                 }
                 default: {

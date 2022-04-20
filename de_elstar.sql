@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2022 at 02:15 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.3.28
+-- Generation Time: Apr 19, 2022 at 03:00 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -110,38 +110,11 @@ INSERT INTO `categories` (`id`, `category`, `bikeAmount`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customers`
---
-
-CREATE TABLE `customers` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `firstName` varchar(35) NOT NULL,
-  `middleName` varchar(35) DEFAULT NULL,
-  `lastName` varchar(35) NOT NULL,
-  `phoneNumber` varchar(10) NOT NULL,
-  `emailAddress` varchar(35) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`id`, `firstName`, `middleName`, `lastName`, `phoneNumber`, `emailAddress`, `password`) VALUES
-(72, 'Dirk', '', 'Freijters', '649806407', 'dirk@freijters.nl', 'dirk123!'),
-(73, 'Dirk', '', 'Freijters', '649806407', 'dirk@freijters.nl', 'dirk123!');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `employees`
 --
 
 CREATE TABLE `employees` (
   `id` int(11) NOT NULL,
-  `firstName` varchar(35) NOT NULL,
-  `middleName` varchar(35) DEFAULT NULL,
-  `lastName` varchar(35) NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -172,6 +145,28 @@ CREATE TABLE `purchase_bikes` (
   `bikeId` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `username` varchar(35) NOT NULL,
+  `email` varchar(35) NOT NULL,
+  `hash` varchar(255) NOT NULL,
+  `type` enum('customer','employee','','') NOT NULL DEFAULT 'customer'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `hash`, `type`) VALUES
+(72, '', 'dirk@freijters.nl', 'dirk123!', 'customer'),
+(74, 'Test', 'test@test.com', '$2b$10$139Om7T8byD0nbijUYGhGeXSaQlAytlAb7RbzKjFuTjj.QdGiThYO', 'customer');
+
 --
 -- Indexes for dumped tables
 --
@@ -197,12 +192,6 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `customers`
---
-ALTER TABLE `customers`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
@@ -225,6 +214,14 @@ ALTER TABLE `purchase_bikes`
   ADD KEY `bike_id` (`bikeId`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -241,12 +238,6 @@ ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `customers`
---
-ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
-
---
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
@@ -257,6 +248,12 @@ ALTER TABLE `employees`
 --
 ALTER TABLE `purchases`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- Constraints for dumped tables
@@ -273,7 +270,7 @@ ALTER TABLE `bike_categories`
 -- Constraints for table `purchases`
 --
 ALTER TABLE `purchases`
-  ADD CONSTRAINT `purchases_ibfk_1` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`),
+  ADD CONSTRAINT `purchases_ibfk_1` FOREIGN KEY (`customer`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `purchases_ibfk_2` FOREIGN KEY (`bike`) REFERENCES `bikes` (`id`);
 
 --
