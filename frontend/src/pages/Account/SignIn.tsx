@@ -34,7 +34,7 @@ export default function SignUp() {
                     sessionStorage.setItem('username', user);
                     sessionStorage.setItem('token', res.data.token);
                     if (res.data.type === 'employee') {
-                        navigate("/employeeHome");
+                        navigate("/employee");
                     } else {
                         navigate("/");
                     }

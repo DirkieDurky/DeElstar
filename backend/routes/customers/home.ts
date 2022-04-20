@@ -1,6 +1,6 @@
 // import app from "../index";
 import { Request, Response } from "express";
-import query from "../database";
+import query from "../../database";
 
 const categories = async function (req: Request, res: Response) {
     let categoriesWithImage: { category: string, img: any }[] = [];

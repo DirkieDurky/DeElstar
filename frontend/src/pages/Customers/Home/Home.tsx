@@ -1,4 +1,4 @@
-import logo from '../../de Elstar logo + tekst.png';
+import logo from '../../../de Elstar logo + tekst.png';
 import React, { useEffect, useState } from "react";
 import './Home.css';
 import axios from "axios";
@@ -47,8 +47,8 @@ export default function Home() {
     }
 
     return (
-        <>
-            <nav>
+        <div className="customerBody">
+            < nav className="customerNav" >
                 <a href="/">
                     <img id="logo" src={logo} alt="logo" />
                 </a>
@@ -56,10 +56,10 @@ export default function Home() {
                 <ResetVars.Provider value={resetVars}>
                     <Buttons loggedIn={loggedIn} username={username} />
                 </ResetVars.Provider>
-            </nav>
+            </nav >
             <div className="slideBar" id="categories">
                 <Categories categories={categories} />
             </div>
-        </>
+        </div>
     );
 }

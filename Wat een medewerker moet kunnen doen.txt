@@ -1,0 +1,23 @@
+Fietsen beheren {
+	Per fiets zien of hij verhuurd is, zoja wanneer hij terug zou moeten komen
+	Ingekochte fiets toevoegen
+	Fiets bewerken
+	Fiets verwijderen
+}
+Verhuren {
+	Een lijst van alle verhuren die nog niet terug zijn
+	Een nieuwe verhuur toevoegen
+	Een verhuur als terug melden
+}
+Klanten beheren {
+	Klant account aanmaken
+	Klant account verwijderen
+	Klant account aanpassen
+}
+
+(Als medewerker admin is) Medewerkers beheren {
+	Medewerker account aanmaken
+	Medewerker account bewerken
+	Medewerker account verwijderen
+	Andere medewerkers admin maken of lekker niet (fucking noob)
+}
