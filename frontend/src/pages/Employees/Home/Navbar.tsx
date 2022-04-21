@@ -18,7 +18,7 @@ export default function Navbar(props: { username: string | null }) {
             </div>
             <div className="logout">
                 <span className="employee username">{username}</span>
-                <Link className="employee SignOut button" onClick={() => { sessionStorage.clear(); navigate("/signIn") }} to="/"> Uitloggen </Link>
+                <Link className="employee SignOut button" onClick={() => { sessionStorage.clear(); }} to="/signIn"> Uitloggen </Link>
             </div>
         </nav>
     )

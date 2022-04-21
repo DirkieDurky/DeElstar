@@ -8,6 +8,7 @@ import { categories } from "./routes/customers/home";
 import { register } from "./routes/account/register";
 import { signIn } from "./routes/account/signIn";
 import { getUserToken } from "./routes/account/signedInUsers";
+import { getBikes } from "./routes/employees/bikes/getBikes";
 
 const app = express();
 
@@ -23,12 +24,15 @@ app.use(express.json());
 app.get("/api/test", test);
 app.get("/api/testDb", testDb);
 
-//Home
-app.get("/api/categories", categories);
-
 //Account
 app.post("/api/register", register);
 app.post("/api/signIn", signIn);
 app.get("/api/getUserToken", getUserToken);
+
+//Customer
+app.get("/api/categories", categories);
+
+//Employee
+app.get("/api/bikes", getBikes);
 
 app.listen(5000, () => console.log('Server running at port 5000'));
