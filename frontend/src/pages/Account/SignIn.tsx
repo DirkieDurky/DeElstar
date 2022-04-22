@@ -33,6 +33,7 @@ export default function SignUp() {
                 case 2: {
                     sessionStorage.setItem('username', user);
                     sessionStorage.setItem('token', res.data.token);
+                    sessionStorage.setItem('userType', res.data.type);
                     if (res.data.type === 'employee') {
                         navigate("/employee");
                     } else {
@@ -57,7 +58,7 @@ export default function SignUp() {
                     Terug
                 </Link>
                 <Link to="/">
-                    <img className="logo" src={logo} alt="logo" />
+                    <img className="account logo" src={logo} alt="logo" />
                 </Link>
                 <h1 className="header">Inloggen</h1>
                 <form className="form" onSubmit={handleSubmit}>

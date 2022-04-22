@@ -61,7 +61,7 @@ export default function SignUp() {
                         if (!data.pass.smallLetter) passErr += "Je wachtwoord moet minimaal 1 kleine letter bevatten.\n";
                         if (!data.pass.capitalLetter) passErr += "Je wachtwoord moet minimaal 1 hoofdletter bevatten.\n";
                         if (!data.pass.number) passErr += "Je wachtwoord moet minimaal 1 cijfer bevatten.\n";
-                        if (!data.pass.specialChar) passErr += "Je wachtwoord moet minimaal 1 speciaal karakter bevatten (`!@#$%^&*()_+\-=[]{};':\"\\|,.<>/?~).\n";
+                        if (!data.pass.specialChar) passErr += "Je wachtwoord moet minimaal 1 speciaal karakter bevatten (`!@#$%^&*()_+-=[]{};':\"\\|,.<>/?~).\n";
                     }
                     //Password verify
                     if (!data.passVerify.entered) passVerifyErr += "Vul hetzelfde wachtwoord in als hierboven. Dit is belangrijk zodat u geen typfout maakt in uw wachtwoord.\n";
@@ -119,7 +119,7 @@ export default function SignUp() {
                     Terug
                 </Link>
                 <Link to="/">
-                    <img className="logo" src={logo} alt="logo" />
+                    <img className="account logo" src={logo} alt="logo" />
                 </Link>
                 <h1 className="header">Registreren</h1>
                 <form className="form" onSubmit={handleSubmit}>
