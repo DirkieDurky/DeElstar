@@ -127,6 +127,7 @@
 .card .imageHelper {
     display: inline-block;
     height: 100%;
+    background-color: #FFFFFF;
 }
 
 .card .image {

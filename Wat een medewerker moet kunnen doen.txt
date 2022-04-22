@@ -3,6 +3,7 @@ Fietsen beheren {
 	Ingekochte fiets toevoegen
 	Fiets bewerken
 	Fiets verwijderen
+	Categorieën toedienen aan fietsen
 }
 Verhuren {
 	Een lijst van alle verhuren die nog niet terug zijn
