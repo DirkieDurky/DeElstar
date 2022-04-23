@@ -9,12 +9,10 @@ A website for renting bikes which customers and employees can use made with Type
 * [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701) (Optional)
 
 ### Getting started
-To get started you will need all the depencencies installed.
-
-### First time you pull
-1. Run the `npm install` command in the `frontend` and the `backend` folder
-2. Copy the `.env.example` file located in the `backend` folder and rename the copy to `.env`
-3. Enter your database credentials into the `.env` file
+1. Install all dependencies
+2. Run the `npm install` command in the `frontend` and the `backend` folder
+3. Copy the `.env.example` file located in the `backend` folder and rename the copy to `.env`
+4. Enter your database credentials into the `.env` file
 
 ### Every time you pull
 1. Install the `de_elstar.sql` database and turn the database on
