@@ -9,6 +9,7 @@ import { register } from "./routes/account/register";
 import { signIn } from "./routes/account/signIn";
 import { getUserToken } from "./routes/account/signedInUsers";
 import { getBikes } from "./routes/employees/bikes/getBikes";
+import { updateBike } from "./routes/employees/bikes/updateBike";
 
 const app = express();
 
@@ -34,5 +35,6 @@ app.get("/api/categories", categories);
 
 //Employee
 app.get("/api/bikes", getBikes);
+app.post("/api/updateBike", updateBike);
 
 app.listen(5000, () => console.log('Server running at port 5000'));

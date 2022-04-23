@@ -3,33 +3,63 @@ import React, { useEffect, useState } from 'react'
 import EditableTable, { TableType } from '../EditableTable'
 import "./ManageBikes.css";
 
+const typeTranslation: { [name: string]: string } = {};
+typeTranslation["mens"] = "Mannen";
+typeTranslation["womens"] = "Vrouwen";
+
 const tableColumns = [
-    { name: "", type: TableType.image },
-    { name: "Type", type: TableType.enum, options: ['mens', 'womens'] },
-    { name: "Grootte", type: TableType.int },
-    { name: "Elektrisch", type: TableType.boolean },
-    { name: "Kleur", type: TableType.string },
-    { name: "Merk", type: TableType.string },
-    { name: "Model", type: TableType.string },
-    { name: "Inkoopdatum", type: TableType.date },
-    { name: "Dagprijs", type: TableType.int },
-    { name: "Weekend-prijs", type: TableType.int },
-    { name: "Weekprijs", type: TableType.int },
-    { name: "Maandprijs", type: TableType.int }
+    { id: "image", name: "", type: TableType.image },
+    { id: "type", name: "Type", type: TableType.enum, options: [typeTranslation.mens, typeTranslation.womens] },
+    { id: "size", name: "Grootte", type: TableType.int },
+    { id: "color", name: "Kleur", type: TableType.string },
+    { id: "brand", name: "Merk", type: TableType.string },
+    { id: "model", name: "Model", type: TableType.string },
+    { id: "buyDate", name: "Inkoopdatum", type: TableType.date },
+    { id: "dayPrice", name: "Dagprijs", type: TableType.int },
+    { id: "weekendPrice", name: "Weekend-prijs", type: TableType.int },
+    { id: "weekPrice", name: "Weekprijs", type: TableType.int },
+    { id: "monthPrice", name: "Maandprijs", type: TableType.int }
 ];
 
 export default function ManageBikes() {
-    const [bikes, setBikes] = useState<any[][]>([]);
+    const [tableContent, setTableContent] = useState<{ id: number, data: any[] }[]>([]);
 
     useEffect(() => {
+        async function getBikes() {
+            axios.get(`${process.env.REACT_APP_URL}/api/bikes`, {
+                params: {
+                    credentials: {
+                        username: sessionStorage.getItem('username'),
+                        token: sessionStorage.getItem('token')
+                    }
+                }
+            })
+                .then((res) => {
+                    const data: Bike[] = res.data.map((x: Bike) => Object.assign({}, x, {
+                        type: typeTranslation[x.type]
+                    }));;
+                    let tableContent: { id: number, data: any[] }[] = [];
+
+                    for (let i = 0; i < data.length; i++) {
+                        const item = data[i];
+                        tableContent.push({
+                            id: item.id, data: [
+                                item.image, item.type, item.size, item.color, item.brand, item.model, item.buyDate, item.dayPrice, item.weekendPrice, item.weekPrice, item.monthPrice
+                            ]
+                        });
+                    }
+                    setTableContent(tableContent);
+                })
+                .catch(error => console.error(`Error: ${error}`));
+        }
         getBikes();
     }, []);
 
-    type BikeResponse = {
+    type Bike = {
+        id: number,
         image: string,
         type: string,
         size: number,
-        electric: boolean,
         color: string,
         brand: string,
         model: string,
@@ -38,26 +68,11 @@ export default function ManageBikes() {
         weekendPrice: number,
         weekPrice: number,
         monthPrice: number
-    }[];
-
-    async function getBikes() {
-        axios.get(`${process.env.REACT_APP_URL}/api/bikes`, {
-            params: {
-                username: sessionStorage.getItem('username'),
-                token: sessionStorage.getItem('token')
-            }
-        })
-            .then((res) => {
-                const bikes: BikeResponse = res.data;
-                // console.log(bikes);
-                setBikes(bikes.map(x => Object.values(x)));
-            })
-            .catch(error => console.error(`Error: ${error}`));
-    }
+    };
 
     return (
         <div className="manageBikes field">
-            <EditableTable columns={tableColumns} content={bikes} />
+            <EditableTable columns={tableColumns} content={tableContent} />
         </div>
     )
 }

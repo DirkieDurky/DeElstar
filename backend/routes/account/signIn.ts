@@ -3,7 +3,7 @@ import query from "../../database";
 import bcrypt from "bcrypt";
 import signedInUsers, { updateUserToken } from "./signedInUsers";
 
-async function signIn(req: Request<{}, {}, { user: string, pass: string }>, res: Response) {
+export async function signIn(req: Request<{}, {}, { user: string, pass: string }>, res: Response) {
     const rows = await query("SELECT `username`,`hash`,`type` FROM `users` WHERE username = ?", [req.body.user]);
     /*
         Status codes:
@@ -25,5 +25,3 @@ async function signIn(req: Request<{}, {}, { user: string, pass: string }>, res:
     updateUserToken(user.username, token, user.type);
     res.send({ status: 2, token: token, type: user.type });
 }
-
-export { signIn }

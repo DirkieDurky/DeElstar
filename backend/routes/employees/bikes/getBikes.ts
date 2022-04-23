@@ -1,12 +1,12 @@
-import { Request, response, Response } from "express";
+import { Request, Response } from "express";
 import { verifyEmployee } from "../../account/signedInUsers";
 import query from "../../../database";
 
-type BikeResponse = {
+type BikeData = {
+    id: number,
     image: string,
     type: string,
     size: number,
-    electric: boolean,
     color: string,
     brand: string,
     model: string,
@@ -15,21 +15,19 @@ type BikeResponse = {
     weekendPrice: number,
     weekPrice: number,
     monthPrice: number
-}[];
+};
 
-async function getBikes(req: Request<{}, {}, { username: string, token: string }>, res: Response<BikeResponse>) {
-    console.log("Api");
-    if (!verifyEmployee(req.query as { username: string, token: string })) {
+export async function getBikes(req: Request<{}, {}, { credentials: { username: string, token: string } }>, res: Response<BikeData[]>) {
+    const credentials: { username: string, token: string } = JSON.parse(req.query.credentials as string);
+    if (!verifyEmployee(credentials)) {
         res.sendStatus(401);
         return;
     }
 
-    const rows = await query("SELECT `image`,`type`,`size`,`electric`,`color`,`brand`,\
-    `model`,`buyDate`,`dayPrice`,`weekendPrice`,`weekPrice`,`monthPrice` FROM `bikes`")
+    const rows = await query("SELECT `id`,`image`,`type`,`size`,`color`,`brand`,\
+    `model`,`buyDate`,`dayPrice`,`weekendPrice`,`weekPrice`,`monthPrice` FROM `bikes`");
 
-    const bikes = rows.map(x => Object.assign({}, x, { image: x.image.toString("base64") }));
+    const bikes = rows.map(x => Object.assign({}, x, { image: (x.image && x.image.toString("base64")) }));
 
     res.send(bikes);
 }
-
-export { getBikes }

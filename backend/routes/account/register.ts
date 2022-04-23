@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import query from "../../database";
 import bcrypt from "bcrypt";
 
-async function register(req: Request<{}, {}, { user: string, email: string, pass: string, passVerify: string }>, res: Response) {
+export async function register(req: Request<{}, {}, { user: string, email: string, pass: string, passVerify: string }>, res: Response) {
     /*
         Requirements:
         Lengte van de gebruikersnaam moet tussen de 2 en 35 zijn, en moet uniek zijn.
@@ -87,5 +87,3 @@ async function register(req: Request<{}, {}, { user: string, email: string, pass
         res.send({ status: 401, data: JSON.stringify(reqrmts) });
     }
 };
-
-export { register };

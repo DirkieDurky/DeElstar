@@ -68,7 +68,6 @@
 .button {
     width: 8rem;
     height: 2rem;
-
     text-decoration: none;
     color: black;
     line-height: 200%;
@@ -92,7 +91,7 @@
 }
 
 .slideBar {
-    display: flex;
+    display: inline-flex;
     margin-top: 5rem;
     height: 20rem;
     flex-direction: row;
